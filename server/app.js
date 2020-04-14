@@ -79,7 +79,7 @@ async function signInComplete(iss, sub, profile, accessToken, refreshToken, para
       if (unreadMailsNumber != 0) {
         console.log("allumer led");
         LED.writeSync(1);
-      } else if (unreadMailsNumber == 1) {
+      } else if (unreadMailsNumber == 0) {
         console.log("éteindre led")
         LED.writeSync(0);
       }
