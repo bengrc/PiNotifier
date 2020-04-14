@@ -76,6 +76,7 @@ async function signInComplete(iss, sub, profile, accessToken, refreshToken, para
     
     while (1) {
       const unreadMailsNumber = await graph.getUnreadMailsNumber(accessToken)
+      console.log("Vous avez " + unreadMailsNumber + " mails non lus");
       if (unreadMailsNumber != 0) {
         console.log("allumer led");
         LED.writeSync(1);
