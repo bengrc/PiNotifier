@@ -1,53 +1,25 @@
 {
-  "name": "pi-notifier",
+  "name": "pinotifier",
   "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
   "private": true,
-  "dependencies": {
-    "@angular/animations": "~9.1.1",
-    "@angular/cdk": "^9.2.0",
-    "@angular/common": "~9.1.1",
-    "@angular/compiler": "~9.1.1",
-    "@angular/core": "~9.1.1",
-    "@angular/forms": "~9.1.1",
-    "@angular/material": "^9.2.0",
-    "@angular/platform-browser": "~9.1.1",
-    "@angular/platform-browser-dynamic": "~9.1.1",
-    "@angular/router": "~9.1.1",
-    "@azure/msal": "^1.2.2-beta.1",
-    "@azure/msal-angular": "^1.0.0-beta.5",
-    "@microsoft/microsoft-graph-client": "^2.0.0",
-    "msal": "^1.3.0-beta.1",
-    "rxjs": "~6.5.4",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+  "scripts": {
+    "start": "nodemon ./bin/www"
   },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.1",
-    "@angular/cli": "~9.1.1",
-    "@angular/compiler-cli": "~9.1.1",
-    "@angular/language-service": "~9.1.1",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.11.1",
-    "codelyzer": "^5.1.2",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^5.0.1",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.0",
-    "karma-jasmine": "~3.0.1",
-    "karma-jasmine-html-reporter": "^1.4.2",
-    "protractor": "~5.4.3",
-    "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^2.0.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "http-errors": "~1.6.3",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.24.0",
+    "morgan": "~1.9.1",
+    "onoff": "^5.0.1",
+    "passport-azure-ad": "^4.2.0",
+    "simple-oauth2": "^3.1.0"
   }
 }

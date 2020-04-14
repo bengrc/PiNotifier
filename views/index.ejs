@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>html, body { height: 100%; width:100%; margin: 0; }</style>
+    <link rel='stylesheet' href='/stylesheets/index.css'> 
+    <title><%= title %></title>
+    <!-- Material
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+  </head>
+  <body>
+    <div class="navbar">
+      <div class=navbar-title>PiNotifier</div>
+    </div>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div class="jumbotron">
+    <h1>Node.js Graph Tutorial</h1>
+    <p class="lead">This sample app shows how to use the Microsoft Graph API to access Outlook and OneDrive data from Node.js</p>
+   
+    <% if (user) { if (user.isConnectedToMicrosoft ) { %>
+      <a href="/microsoft/getmails" class="btn btn-primary btn-large">Get mails</a>
+      <a href="/microsoft/signout" class="btn btn-primary btn-large">Sign out</a>
+      <%= user.microsoftName %>
+      <%= user.microsoftEmail %>
+   <% } } %>
+
+   <% if (microsoft) { if (microsoft.mails ) { %>
+    <h2>Vous avez </h2>
+    <%= microsoft.mails %>
+    <h2> mails</h2>
+
+    <% } } %>
+
+    <% if (!user) { %>
+      <a href="/microsoft/signin" class="btn btn-primary btn-large">Sign in</a>
+    <%  } %>
+
+      
+
+    <button class="mdc-fab" aria-label="Favorite">
+      <div class="mdc-fab__ripple"></div>
+      <span class="mdc-fab__icon material-icons">favorite</span>
+    </button>
+    <!-- {{/if}} -->
+
+  </div>
+  </body>
+
+</html>
+
