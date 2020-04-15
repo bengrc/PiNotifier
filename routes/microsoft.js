@@ -24,7 +24,8 @@ router.get('/signin',
 );
 
 router.post('/callback',
-  function(req, res, next) {
+  
+function(req, res, next) {
     passport.authenticate('azuread-openidconnect',
       {
         response: res,
@@ -33,6 +34,7 @@ router.post('/callback',
         failureFlash: true
     }
     )(req,res,next);
+    res.redirect('http://192.168.1.28:4000/');
   },
 );
 
