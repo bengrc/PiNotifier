@@ -28,7 +28,7 @@ router.post('/callback',
     passport.authenticate('azuread-openidconnect',
       {
         response: res,
-        successRedirect: '/',
+        successRedirect: '192.168.1.28:4000/',
         failureRedirect: '/',        
         failureFlash: true
     }
