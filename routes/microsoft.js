@@ -29,12 +29,11 @@ function(req, res, next) {
     passport.authenticate('azuread-openidconnect',
       {
         response: res,
-        successRedirect: '192.168.1.28:4000/',
+        successRedirect: '/',
         failureRedirect: '/',        
         failureFlash: true
     }
     )(req,res,next);
-    res.redirect('http://192.168.1.28:4000/');
   },
 );
 
