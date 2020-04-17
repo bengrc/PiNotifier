@@ -4,10 +4,10 @@
     <style>html, body { height: 100%; width:100%; margin: 0; }</style>
     <link rel='stylesheet' href='/stylesheets/index.css'> 
     <title><%= title %></title>
-    <!-- Material
     <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
   </head>
   <body>
     <div class="navbar">
@@ -37,6 +37,10 @@
       <a href="/microsoft/signin" class="btn btn-primary btn-large">Sign in</a>
     <%  } %>
 
+    <button class="mdc-button">
+      <div class="mdc-button__ripple"></div>
+      <span class="mdc-button__label">Button</span>
+    </button>
       
 
     <button class="mdc-fab" aria-label="Favorite">

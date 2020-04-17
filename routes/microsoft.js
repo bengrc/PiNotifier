@@ -3,8 +3,8 @@ var passport = require('passport');
 var router = express.Router();
 var tokens = require('../api/microsoft_tokens.js');
 var graph = require('../api/microsoft_graph.js');
-var Gpio = require('onoff').Gpio;
-var LED = new Gpio(4, 'out');
+/* var Gpio = require('onoff').Gpio;
+var LED = new Gpio(4, 'out'); */
 
 global.mails = false;
 
@@ -94,10 +94,10 @@ router.get('/getmails',
           console.log("You have " + unreadMails + " unread mail(s) in your Office365 mailbox");
           if (unreadMails != 0) {
             console.log("LED on");
-            LED.writeSync(1);
+           // LED.writeSync(1);
           } else if (unreadMails == 0) {
             console.log("LED off")
-            LED.writeSync(0);
+           // LED.writeSync(0);
           }
           sleep(4000);
         }
