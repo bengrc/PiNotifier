@@ -24,17 +24,23 @@ router.get('/signin',
 );
 
 router.post('/callback',
-  
-function(req, res, next) {
+  function(req, res, next) {
+    console.log("JE PASSE ICI");
     passport.authenticate('azuread-openidconnect',
       {
         response: res,
-        successRedirect: '/',
-        failureRedirect: '/',        
+        failureRedirect: '/',
         failureFlash: true
-    }
+      }
     )(req,res,next);
   },
+  function(req, res) {
+    console.log("ICI AUSSI");
+    // TEMPORARY!
+    // Flash the access token for testing purposes
+    req.flash('error_msg', {message: 'Access token', debug: req.user.accessToken});
+    res.redirect('/');
+  }
 );
 
 router.get('/signout',
