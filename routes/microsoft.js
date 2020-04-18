@@ -3,8 +3,8 @@ var passport = require('passport');
 var router = express.Router();
 var tokens = require('../api/microsoft_tokens.js');
 var graph = require('../api/microsoft_graph.js');
-/* var Gpio = require('onoff').Gpio;
-var LED = new Gpio(4, 'out'); */
+var Gpio = require('onoff').Gpio;
+var LED = new Gpio(4, 'out');
 
 global.mails = false;
 
@@ -25,7 +25,6 @@ router.get('/signin',
 
 router.post('/callback',
   function(req, res, next) {
-    console.log("JE PASSE ICI");
     passport.authenticate('azuread-openidconnect',
       {
         response: res,
@@ -34,13 +33,8 @@ router.post('/callback',
       }
     )(req,res,next);
   },
-  function(req, res) {
-    console.log("ICI AUSSI");
-    // TEMPORARY!
-    // Flash the access token for testing purposes
+  function(req, res) {;
     req.flash('error_msg', {message: 'Access token', debug: req.user.accessToken});
-    console.log(req.user);
-    console.log(req.user.profile);
     res.redirect("/");
   }
 );
@@ -54,14 +48,6 @@ router.get('/signout',
   }
 );
 
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
-
 router.get('/getmails',
   async function(req, res) {
     if (global.mails == false) {
@@ -69,13 +55,11 @@ router.get('/getmails',
     } else if (global.mails == true) {
       global.mails = false;
     }
-    console.log("MAILS STATE : " + global.mails);
     if (!req.isAuthenticated()) {
       // Redirect unauthenticated requests to home page
       res.redirect('/')
     } else if (global.mails == true) {
       let params = {
-        //active: { calendar: true }
         title: 'PiNotifier', 
         home: true, 
         user: res.locals.user, 
@@ -83,7 +67,6 @@ router.get('/getmails',
           unreadMails: 0
         }
       };
-
       // Get the access token
       var accessToken;
       try {
@@ -95,6 +78,7 @@ router.get('/getmails',
         });
       }
 
+      // Get unread mails
       if (accessToken && accessToken.length > 0) {
         while (global.mails == true) {
           var unreadMails = await graph.getUserMails(accessToken);
@@ -115,5 +99,13 @@ router.get('/getmails',
     }
   }
 );
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
 
 module.exports = router;
