@@ -5,7 +5,6 @@
   flex-direction: row;
   background-color: black;
   color: white;
-
 }
 
 .navbar-title {
@@ -16,16 +15,12 @@
   padding-left: 20px;
 }
 
-:host {
-  display: inline-block;
-  background-color: gainsboro;
-}
-
 .mdc-card {
   max-width: 350px;
   margin-left: 20px;
   margin-top: 15px;
 }
+
 .my-media {
   background-image: url('../assets/office-365-logo.png');
 }
