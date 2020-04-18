@@ -39,22 +39,14 @@ a {
 .mdc-card {
   max-width: 350px;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .my-media {
   background-image: url('../assets/office-365-logo.png');
 }
-.content {
-  padding: 1rem;
-}
+
 .subtext {
   color: rgba(0, 0, 0, 0.54);
-}
-
-.presentCard {
-  padding: 40px;
-  display: flex;
-  justify-content: center;
 }
 
 .content {
@@ -62,9 +54,6 @@ a {
   background-color: white;
   font-family: 'Manrope', sans-serif;
 }
-
-
-
 
 .notificationsLabel {
   padding-left: 15px;
