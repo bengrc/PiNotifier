@@ -41,7 +41,7 @@ router.post('/callback',
     req.flash('error_msg', {message: 'Access token', debug: req.user.accessToken});
     console.log(req.user);
     console.log(req.user.profile);
-    res.redirect("http://192.168.1.28:4000/");
+    res.redirect("/");
   }
 );
 

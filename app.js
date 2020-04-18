@@ -147,6 +147,7 @@ app.use(function(req, res, next) {
   // template locals
   if (req.user) {
     res.locals.user = req.user.profile;
+    console.log("ICI NEGRO", req.user.profile);
   }
   next();
 });
