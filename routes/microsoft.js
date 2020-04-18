@@ -94,6 +94,7 @@ router.get('/getmails',
           }
           sleep(4000);
         }
+        LED.writeSync(0);
       }
       res.render('index', params);  
     }
