@@ -80,7 +80,7 @@ router.get('/getmails',
         home: true, 
         user: res.locals.user, 
         microsoft: {
-          mails: 0
+          unreadMails: 0
         }
       };
 
@@ -101,26 +101,16 @@ router.get('/getmails',
           console.log("You have " + unreadMails + " unread mail(s) in your Office365 mailbox");
           if (unreadMails != 0) {
             console.log("LED on");
-           // LED.writeSync(1);
+            if (LED.readSync() === 0) {
+              LED.writeSync(1);
+            }
           } else if (unreadMails == 0) {
             console.log("LED off")
-           // LED.writeSync(0);
+            LED.writeSync(0);
           }
           sleep(4000);
         }
-        // try {
-          
-        //   // Get the events
-        //   var unreadMails = await graph.getUserMails(accessToken);
-        //   params.microsoft.mails = unreadMails;
-        // } catch (err) {
-        //   req.flash('error_msg', {
-        //     message: 'Could not fetch events',
-        //     debug: JSON.stringify(err)
-        //   });
-        // }
       }
-
       res.render('index', params);  
     }
   }

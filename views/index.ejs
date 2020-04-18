@@ -18,16 +18,18 @@
         <div class="mdc-card__media mdc-card__media--16-9 my-media"></div>
         <div class="content">
           <h2 class="mdc-typography--title">Microsoft Office 365</h2>
-          <div class="mdc-typography--body1 subtext">Connect to Microsoft Office 365 to get emails notifications from Raspberry Pi</div>
-        </div>
-        <mdc-ripple>
-          <% if (microsoft) { if (microsoft.mails ) { %>
-            <h2>Vous avez </h2>
-            <%= microsoft.mails %>
-            <h2> mails</h2>    
+          <% if (!user) { %>
+            <div class="mdc-typography--body1 subtext">Connect to Microsoft Office 365 to get emails notifications from Raspberry Pi</div>
+          <%  } %>
+          <% if (user) { if (user.isConnectedToMicrosoft ) { %>
+            <% if (microsoft) { if (microsoft.unreadMails ) { %>
+              <h2>Vous avez </h2>
+              <%= microsoft.mails %>
+              <h2> mails</h2>    
+            <% } } %>
           <% } } %>
-      
-        </mdc-ripple>
+        </div>
+        <mdc-ripple></mdc-ripple>
       </div>
       <div class="mdc-card__actions">     
         <% if (!user) { %>
@@ -43,8 +45,6 @@
           </div>
           <label class="notificationsLabel" href="/microsoft/getmails" for="basic-switch">Activate notifications</label> 
           <a href="/microsoft/signout" class="mdc-button mdc-button--raised">Log Out</a>
-          <%= user.microsoftName %>
-          <%= user.microsoftEmail %>
        <% } } %>
       </div>
     </div>
