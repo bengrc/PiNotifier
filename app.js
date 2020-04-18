@@ -1,12 +1,12 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-require('dotenv').config();
 var microsoftGraph = require('./api/microsoft_graph');
 
-/*Microsoft */
+/* Microsoft */
 
 var session = require('express-session');
 var flash = require('connect-flash');
@@ -20,7 +20,6 @@ var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 // For demo purposes only, production apps should store
 // this in a reliable storage
 var users = {};
-
 // Passport calls serializeUser and deserializeUser to
 // manage users
 passport.serializeUser(function(user, done) {
@@ -55,11 +54,9 @@ async function signInComplete(iss, sub, profile, accessToken, refreshToken, para
 
   try{
     const user = await microsoftGraph.getUserDetails(accessToken);
-
-    if (user) {
-      console.log(user);
-      // Add properties to profile
-      
+    
+    // Add properties to profile  
+    if (user) {   
       profile['microsoftEmail'] = user.mail ? user.mail : user.userPrincipalName;
       profile['microsoftName'] = user.givenName;
       profile['isConnectedToMicrosoft'] = true;
@@ -69,7 +66,6 @@ async function signInComplete(iss, sub, profile, accessToken, refreshToken, para
   }
   // Create a simple-oauth2 token from raw tokens
   let oauthToken = oauth2.accessToken.create(params);
-
   // Save the profile and tokens in user storage
   users[profile.oid] = { profile, oauthToken };
   return done(null, users[profile.oid]);
@@ -93,7 +89,6 @@ passport.use(new OIDCStrategy(
 ));
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var microsoftRouter = require('./routes/microsoft');
 
 var app = express();
@@ -147,13 +142,11 @@ app.use(function(req, res, next) {
   // template locals
   if (req.user) {
     res.locals.user = req.user.profile;
-    console.log("ICI NEGRO", req.user.profile);
   }
   next();
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/microsoft', microsoftRouter);
 
 // catch 404 and forward to error handler

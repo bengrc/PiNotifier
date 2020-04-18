@@ -7,50 +7,63 @@
     <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="navbar">
       <div class=navbar-title>PiNotifier</div>
     </div>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div class="jumbotron">
-    <h1>Node.js Graph Tutorial</h1>
-    <p class="lead">This sample app shows how to use the Microsoft Graph API to access Outlook and OneDrive data from Node.js</p>
-   
-    <% if (user) { if (user.isConnectedToMicrosoft ) { %>
-      <a href="/microsoft/getmails" class="btn btn-primary btn-large">Get mails</a>
-      <a href="/microsoft/signout" class="btn btn-primary btn-large">Sign out</a>
-      <%= user.microsoftName %>
-      <%= user.microsoftEmail %>
-   <% } } %>
-
-   <% if (microsoft) { if (microsoft.mails ) { %>
-    <h2>Vous avez </h2>
-    <%= microsoft.mails %>
-    <h2> mails</h2>
-
-    <% } } %>
-
-    <% if (!user) { %>
-      <a href="/microsoft/signin" class="btn btn-primary btn-large">Sign in</a>
-    <%  } %>
-
-    <button class="mdc-button">
-      <div class="mdc-button__ripple"></div>
-      <span class="mdc-button__label">Button</span>
-    </button>
+    <div class="mdc-card">
+      <div class="mdc-card__primary-action">
+        <div class="mdc-card__media mdc-card__media--16-9 my-media"></div>
+        <div class="content">
+          <h2 class="mdc-typography--title">Microsoft Office 365</h2>
+          <div class="mdc-typography--body1 subtext">Connect to Microsoft Office 365 to get emails notifications from Raspberry Pi</div>
+        </div>
+        <mdc-ripple>
+          <% if (microsoft) { if (microsoft.mails ) { %>
+            <h2>Vous avez </h2>
+            <%= microsoft.mails %>
+            <h2> mails</h2>    
+          <% } } %>
       
-
-    <button class="mdc-fab" aria-label="Favorite">
-      <div class="mdc-fab__ripple"></div>
-      <span class="mdc-fab__icon material-icons">favorite</span>
-    </button>
-    <!-- {{/if}} -->
-
-  </div>
+        </mdc-ripple>
+      </div>
+      <div class="mdc-card__actions">     
+        <% if (!user) { %>
+          <a href="/microsoft/signin" class="mdc-button mdc-button--raised">Log In</a>
+        <%  } %>
+        <% if (user) { if (user.isConnectedToMicrosoft ) { %>
+          <div class="mdc-switch">
+            <div class="mdc-switch__track"></div>
+            <div class="mdc-switch__thumb-underlay">
+              <div class="mdc-switch__thumb"></div>
+              <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" aria-checked="false" onclick="getmails();">
+            </div>
+          </div>
+          <label class="notificationsLabel" href="/microsoft/getmails" for="basic-switch">Activate notifications</label> 
+          <a href="/microsoft/signout" class="mdc-button mdc-button--raised">Log Out</a>
+          <%= user.microsoftName %>
+          <%= user.microsoftEmail %>
+       <% } } %>
+      </div>
+    </div>
   </body>
-
 </html>
+<script>
+var buttons = document.querySelectorAll('.mdc-button, .mdc-fab');
+for (var i = 0, button; button = buttons[i]; i++) {
+  mdc.ripple.MDCRipple.attachTo(button);
+};
+
+function getmails()
+{
+  window.location.href = "/microsoft/getmails";
+}
+
+[].slice.call(document.querySelectorAll('.mdc-switch')).forEach(
+  function(ele) {
+    switchs = mdc.switchControl.MDCSwitch.attachTo(ele);
+ });
+</script>
 
